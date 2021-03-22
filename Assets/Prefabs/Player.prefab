@@ -352,3 +352,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  dashSpeed: 5
+  dashTime: 0.1
+  minimumMagnitude: 0.2

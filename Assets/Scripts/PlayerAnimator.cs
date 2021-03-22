@@ -12,16 +12,17 @@ public class PlayerAnimator : MonoBehaviour
     spriteRenderer = GetComponent<SpriteRenderer>();
   }
 
-  public void Animate(Vector2 moveVector, float moveSpeed) {
+  public void Animate(Vector2 moveVector, Vector2 lastVector, bool dash, float moveSpeed) {
     var magnitude = moveVector.sqrMagnitude;
     animator.SetFloat("Horizontal", moveVector.x);
     animator.SetFloat("Vertical", moveVector.y);
     animator.SetFloat("Magnitude", magnitude);
+    animator.SetBool("Dash", dash);
     animator.SetFloat("Speed", Mathf.Clamp(magnitude * moveSpeed, 0.5f, 2.5f));
     if (magnitude > 0) {
-      animator.SetFloat("LastHorizontal", moveVector.x);
-      animator.SetFloat("LastVertical", moveVector.y);
-      spriteRenderer.flipX = (moveVector.x > 0);
+      animator.SetFloat("LastHorizontal", lastVector.x);
+      animator.SetFloat("LastVertical", lastVector.y);
+      spriteRenderer.flipX = (lastVector.x > 0);
     }
   }
 }
